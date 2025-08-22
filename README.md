@@ -21,6 +21,6 @@ npm install
 
 ## Run the project
 
-npx react-native run-android
+ืnpm start android
 or
-npx react-native run-ios
+npm start ios

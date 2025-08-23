@@ -6,14 +6,11 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
-  ScrollView,
   Platform,
   StatusBar,
+  Image
 } from 'react-native';
-// If you use Expo, install: expo install expo-linear-gradient
-// Bare RN: yarn add react-native-linear-gradient && npx pod-install
-import { LinearGradient } from 'expo-linear-gradient'; // or: import LinearGradient from 'react-native-linear-gradient';
-
+import { LinearGradient } from 'expo-linear-gradient'; 
 export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -27,13 +24,11 @@ export default function LoginScreen() {
 
         <View style={styles.scroll}>
           <Text style={styles.welcome}>Welcome</Text>
-
-          {/* Logo / App mark area (you will place your own image here) */}
           <View style={styles.logoCard}>
-            {/* Replace this box with <Image source={...}/> and keep the same style */}
-            <View style={styles.logoPlaceholder}>
-              <Text style={styles.logoText}>Habit{"\n"}Tracker</Text>
-            </View>
+              <Image 
+                source={require("../assets/appLogo.png")}
+                style={styles.logoImage}
+              />
           </View>
 
           {/* Sign in Block */}
@@ -41,7 +36,7 @@ export default function LoginScreen() {
             <View style={styles.signinCard}>
               <Text style={styles.signinTitle}>Sigh in</Text>
 
-              {/* Email field row (icon will be your image) */}
+              {/* Email field*/}
               <View style={styles.inputRow}>
                 <View style={styles.iconPlaceholder} />
                 <TextInput
@@ -53,7 +48,7 @@ export default function LoginScreen() {
                 />
               </View>
 
-              {/* Password field row (icon will be your image) */}
+              {/* Password field*/}
               <View style={[styles.inputRow, { marginTop: 14 }]}>
                 <View style={styles.iconPlaceholder} />
                 <TextInput
@@ -93,12 +88,12 @@ export default function LoginScreen() {
   );
 }
 
-const CARD_BG = "rgba(255,255,255,0.65)"; // glassy light card
+const CARD_BG = "rgba(255,255,255,0.65)";
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#E3F8E6', // pale green base to match lower area
+    backgroundColor: '#E3F8E6',
     paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) : 0,
   },
   root: {
@@ -134,18 +129,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
-  logoPlaceholder: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 18,
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-  },
-  logoText: {
-    color: '#ffffff',
-    fontSize: 34,
-    fontWeight: '800',
-    lineHeight: 36,
+  logoImage:{
+    width:100,
+    height:60
   },
   signinCardWrapper: {
     paddingHorizontal: 18,
@@ -186,7 +172,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderRadius: 13,
-    backgroundColor: '#3CB371', // placeholder circle where you drop your icon image
+    backgroundColor: '#3CB371',
     marginRight: 10,
   },
   input: {

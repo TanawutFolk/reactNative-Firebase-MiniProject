@@ -1,279 +1,244 @@
-// src/screens/RegisterScreen.tsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
   Text,
+  StyleSheet,
   TextInput,
   Pressable,
-  StyleSheet,
-  KeyboardAvoidingView,
   Platform,
-  ScrollView,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+  StatusBar,
+  Image,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-type Props = {
-  navigation: any;
-};
-
-export default function RegisterScreen({ navigation }: Props) {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+export default function RegisterScreen({ navigation }: any) {
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
 
   const onRegister = () => {
-    // TODO: ผูกกับ services/authService.registerWithEmail(...)
-    // ตอนนี้ทำเป็น UI อย่างเดียว
-  };
-
-  const onGoLogin = () => {
-    navigation.replace("Login");
+    // TODO: เชื่อมกับ authService.registerWithEmail(...)
   };
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.select({ ios: "padding", android: undefined })}
-      >
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-          {/* ===== Top Gradient Header ===== */}
-          <LinearGradient
-            colors={["#0BB229", "#0A8A1F"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 0, y: 1 }}
-            style={styles.header}
-          >
-            <View style={styles.brand}>
-              <View style={styles.logoBox}>
-                {/* ใส่โลโก้/ไอคอนเช็คที่นี่ได้ */}
-              </View>
-              <View>
-                <Text style={styles.appNameTop}>Habit</Text>
-                <Text style={styles.appNameBottom}>Tracker</Text>
-              </View>
-            </View>
-          </LinearGradient>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.root}>
+        <LinearGradient
+          colors={['#064D00', '#0EB300']}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 0.9 }}
+          style={styles.headerBg}
+        />
 
-          {/* ===== Card ===== */}
-          <View style={styles.cardWrap}>
+        <View style={styles.scroll}>
+          <Text style={styles.welcome}>Create Account</Text>
+          <View style={styles.logoCard}>
+            <Image
+              source={require('../../assets/appLogo.png')}
+              style={styles.logoImage}
+            />
+          </View>
+
+          {/* Register Block */}
+          <View style={styles.cardWrapper}>
             <View style={styles.card}>
-              <Text style={styles.cardTitle}>Register</Text>
+              <Text style={styles.title}>Register</Text>
 
               {/* Email */}
-              <View style={styles.inputWrap}>
-                <View style={styles.iconSlot}>
-                  {/* ICON HERE (mail) */}
-                </View>
+              <View style={styles.inputRow}>
+                <View style={styles.iconPlaceholder} />
                 <TextInput
                   style={styles.input}
-                  placeholder="E-mail"
-                  placeholderTextColor="#b8c2bb"
+                  placeholder="Email"
+                  placeholderTextColor="#7aa07a"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
                   value={email}
                   onChangeText={setEmail}
-                  autoCapitalize="none"
-                  keyboardType="email-address"
-                  returnKeyType="next"
                 />
               </View>
 
               {/* Username */}
-              <View style={styles.inputWrap}>
-                <View style={styles.iconSlot}>
-                  {/* ICON HERE (user) */}
-                </View>
+              <View style={styles.inputRow}>
+                <View style={styles.iconPlaceholder} />
                 <TextInput
                   style={styles.input}
                   placeholder="Username"
-                  placeholderTextColor="#b8c2bb"
+                  placeholderTextColor="#7aa07a"
+                  autoCapitalize="none"
                   value={username}
                   onChangeText={setUsername}
-                  autoCapitalize="none"
-                  returnKeyType="next"
                 />
               </View>
 
               {/* Password */}
-              <View style={styles.inputWrap}>
-                <View style={styles.iconSlot}>
-                  {/* ICON HERE (lock) */}
-                </View>
+              <View style={styles.inputRow}>
+                <View style={styles.iconPlaceholder} />
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
-                  placeholderTextColor="#b8c2bb"
+                  placeholderTextColor="#7aa07a"
+                  secureTextEntry
                   value={password}
                   onChangeText={setPassword}
-                  secureTextEntry
-                  returnKeyType="next"
                 />
               </View>
 
               {/* Confirm Password */}
-              <View style={styles.inputWrap}>
-                <View style={styles.iconSlot}>
-                  {/* ICON HERE (lock) */}
-                </View>
+              <View style={styles.inputRow}>
+                <View style={styles.iconPlaceholder} />
                 <TextInput
                   style={styles.input}
-                  placeholder="Confirm password"
-                  placeholderTextColor="#b8c2bb"
+                  placeholder="Confirm Password"
+                  placeholderTextColor="#7aa07a"
+                  secureTextEntry
                   value={confirm}
                   onChangeText={setConfirm}
-                  secureTextEntry
-                  returnKeyType="done"
                 />
               </View>
 
-              {/* Register Button (Gradient) */}
-              <Pressable onPress={onRegister} style={{ borderRadius: 14, overflow: "hidden", marginTop: 12 }}>
-                <LinearGradient
-                  colors={["#19B83A", "#0A8A1F"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 0, y: 1 }}
-                  style={styles.primaryBtn}
-                >
-                  <Text style={styles.primaryBtnText}>Register</Text>
-                </LinearGradient>
-              </Pressable>
+              {/* Register Button */}
+              <LinearGradient
+                colors={['#34C759', '#1EA84A', '#0D7B2E']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.actionBtn}
+              >
+                <Pressable style={styles.actionBtnPressable} onPress={onRegister}>
+                  <Text style={styles.actionBtnText}>Register</Text>
+                </Pressable>
+              </LinearGradient>
 
-              {/* Sign in Button (outlined/soft) */}
-              <Pressable onPress={onGoLogin} style={styles.secondaryBtn}>
-                <Text style={styles.secondaryBtnText}>Sign in</Text>
-              </Pressable>
+              {/* Already have account */}
+              <View style={styles.loginRow}>
+                <Text style={styles.loginHint}>Already have an account?</Text>
+                <Pressable onPress={() => navigation.navigate('Login')}>
+                  <Text style={styles.loginLink}> Sign in</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-
-          {/* Bottom soft background */}
-          <View style={styles.bottomSoft} />
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
 
-const CARD_RADIUS = 18;
-
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#DBF9E5" },
-
-  header: {
-    height: 210,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    paddingHorizontal: 24,
-    justifyContent: "flex-end",
-    paddingBottom: 18,
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#E3F8E6',
+    paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) : 0,
   },
-
-  brand: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
+  root: { flex: 1 },
+  headerBg: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '47%',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
-
-  logoBox: {
-    width: 56,
-    height: 56,
-    borderRadius: 16,
-    backgroundColor: "white",
-    justifyContent: "center",
-    alignItems: "center",
+  scroll: { paddingBottom: 40 },
+  welcome: {
+    textAlign: 'center',
+    color: '#ffffff',
+    fontWeight: '700',
+    marginTop: 55,
+    fontSize: 16,
+    textDecorationLine: 'underline',
   },
-
-  appNameTop: {
-    color: "white",
-    fontSize: 28,
-    fontWeight: "800",
-    lineHeight: 28,
+  logoCard: {
+    alignSelf: 'center',
+    marginTop: 24,
+    width: 220,
+    height: 120,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
   },
-  appNameBottom: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "700",
-    marginTop: 4,
+  logoImage: { width: 100, height: 60 },
+  cardWrapper: {
+    paddingHorizontal: 18,
+    marginTop: 22,
   },
-
-  cardWrap: {
-    marginTop: -40,
-    paddingHorizontal: 16,
-  },
-
   card: {
-    backgroundColor: "#CBE8D2",
-    borderRadius: CARD_RADIUS,
-    padding: 16,
-    borderWidth: 2,
-    borderColor: "#E9FAEF",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 2,
+    backgroundColor: '#AED7AB',
+    borderRadius: 28,
+    padding: 20,
+    borderWidth: 10,
+    borderColor: '#ffffff',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 6 },
+      },
+      android: { elevation: 10 },
+    }),
   },
-
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: "800",
-    color: "#2B5132",
-    marginBottom: 12,
+  title: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#ffffff',
+    textShadowColor: 'rgba(0,0,0,0.15)',
+    textShadowRadius: 6,
+    marginBottom: 14,
   },
-
-  inputWrap: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 14,
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderRadius: 24,
     paddingHorizontal: 12,
-    height: 50,
+    height: 44,
+    width: '90%',
+    alignSelf: 'center',
     marginBottom: 12,
   },
-
-  iconSlot: {
+  iconPlaceholder: {
     width: 26,
     height: 26,
     borderRadius: 13,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#3CB371',
     marginRight: 10,
-    // คุณจะวาง <Icon .../> ตรงนี้ได้เลย
   },
-
-  input: {
-    flex: 1,
-    fontSize: 16,
-    color: "#1d2b22",
-  },
-
-  primaryBtn: {
-    height: 52,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 14,
-  },
-  primaryBtnText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "800",
-  },
-
-  secondaryBtn: {
-    height: 52,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 14,
+  input: { flex: 1, fontSize: 16, color: '#153E15' },
+  actionBtn: {
+    borderRadius: 24,
+    height: 48,
+    width: '90%',   // ✅ ปุ่มสั้นลงตามช่อง input
+    alignSelf: 'center',
+    justifyContent: 'center',
     marginTop: 10,
-    backgroundColor: "#B9E0C1",
   },
-  secondaryBtnText: {
-    color: "#0A8A1F",
-    fontSize: 18,
-    fontWeight: "800",
+  actionBtnPressable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-
-  bottomSoft: {
-    height: 40,
+  actionBtnText: {
+    color: '#ffffff',
+    fontWeight: '900',
+    fontSize: 20,
+    letterSpacing: 0.2,
+    textShadowColor: 'rgba(0,0,0,0.25)',
+    textShadowRadius: 4,
+  },
+  loginRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 12,
+  },
+  loginHint: { color: '#2B4B2B' },
+  loginLink: {
+    color: '#1E7CC1',
+    fontWeight: '800',
+    textDecorationLine: 'underline',
   },
 });

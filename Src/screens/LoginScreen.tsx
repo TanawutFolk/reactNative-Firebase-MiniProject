@@ -89,8 +89,6 @@ export default function LoginScreen({navigation}:any) {
   );
 }
 
-const CARD_BG = "rgba(255,255,255,0.65)";
-
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -105,7 +103,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: '40%',
+    height: '47%',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
@@ -135,22 +133,23 @@ const styles = StyleSheet.create({
     height:60
   },
   signinCardWrapper: {
-    paddingHorizontal: 18,
-    marginTop: 12,
+  paddingHorizontal: 18,
+  marginTop: 22,
   },
   signinCard: {
-    backgroundColor: CARD_BG,
-    borderRadius: 18,
-    padding: 16,
-    paddingTop: 18,
+    backgroundColor: "#AED7AB", // สีเขียวโปร่ง
+    borderRadius: 28,
+    padding: 20,
+    borderWidth: 10,                // ✅ ขอบหนา
+    borderColor: "#ffffff",        // ✅ ขอบสีขาว
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOpacity: 0.18,
+        shadowOpacity: 0.3,        // ✅ เงาชัดขึ้น
         shadowRadius: 12,
         shadowOffset: { width: 0, height: 6 },
       },
-      android: { elevation: 6 },
+      android: { elevation: 10 },  // ✅ เงาชัดขึ้น
     }),
   },
   signinTitle: {
@@ -167,7 +166,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 24,
     paddingHorizontal: 12,
-    height: 48,
+    height: 44,             // ✅ ลดความสูงลงเล็กน้อย
+    width: "90%",           // ✅ ช่องสั้นลง
+    alignSelf: "center",    // ✅ อยู่กึ่งกลาง
+    marginBottom: 12,
   },
   iconPlaceholder: {
     width: 26,

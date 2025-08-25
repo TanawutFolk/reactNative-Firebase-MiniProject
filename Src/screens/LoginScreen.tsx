@@ -11,7 +11,8 @@ import {
   Image
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; 
-export default function LoginScreen() {
+
+export default function LoginScreen({navigation}:any) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.root}>
@@ -26,7 +27,7 @@ export default function LoginScreen() {
           <Text style={styles.welcome}>Welcome</Text>
           <View style={styles.logoCard}>
               <Image 
-                source={require("../assets/appLogo.png")}
+                source={require("../../assets/appLogo.png")}
                 style={styles.logoImage}
               />
           </View>
@@ -76,7 +77,7 @@ export default function LoginScreen() {
 
               <View style={styles.registerRow}>
                 <Text style={styles.registerHint}>Don’t have an accout?</Text>
-                <Pressable onPress={() => {}}>
+                <Pressable onPress={() => navigation.navigate("Register")}>
                   <Text style={styles.registerLink}> Register</Text>
                 </Pressable>
               </View>
